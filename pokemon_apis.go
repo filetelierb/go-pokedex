@@ -67,11 +67,11 @@ func (pokemon Pokemon) PrintStats(){
 	fmt.Printf("Weight: %d\n",pokemon.Weight)
 	fmt.Print("Stats:\n")
 	for _,stat := range pokemon.Stats{
-		fmt.Printf("  -%s: %d\n",stat.Type.Name,stat.BaseStat)
+		fmt.Printf("  - %s: %d\n",stat.Type.Name,stat.BaseStat)
 	}
 	fmt.Print("Types:\n")
 	for _,t := range pokemon.Types{
-		fmt.Printf("  -%s\n",t.Type.Name)
+		fmt.Printf("  - %s\n",t.Type.Name)
 	}
 }
 

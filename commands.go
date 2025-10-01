@@ -87,7 +87,7 @@ func commandCatch (configurations *config, parameters []string) error{
 	baseChance := 0.5 - math.Min((baseExp / 1000),0.49)
 	if success := (float64(rand.Intn(100)) / 100) < baseChance; success {
 		capturedPokemons[pokemonName] = pokemon
-		fmt.Printf("%s was caught!\n", pokemonName)
+		fmt.Printf("%s was caught!\nYou may now inspect it with the inspect command.\n", pokemonName)
 	} else {
 		fmt.Printf("%s escaped!\n", pokemonName)
 	}
@@ -108,6 +108,14 @@ func commandInspect (configurations *config, parameters []string) error{
 	pokemon.PrintStats()
 	return nil
 	
+}
+
+func commandPokedex (configurations *config, parameters []string) error{
+	fmt.Print("Your Pokedex:\n")
+	for _, pokemon := range capturedPokemons{
+		fmt.Printf(" - %s\n",pokemon.Name)
+	}
+	return nil
 }
 
 type config struct {
@@ -169,6 +177,11 @@ func init() {
 			name: "inspect",
 			description: "It looks for a captured pokemon",
 			callback: commandInspect,
+		},
+		"pokedex": {
+			name: "pokedex",
+			description: "Shows captured pokemons",
+			callback: commandPokedex,
 		},
     }
 }
